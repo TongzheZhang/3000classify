@@ -108,13 +108,13 @@ print 'score预测加计算表现：',lr.score(testfeature,testlabel)#只能预�
 
 print classification_report(testlabel,predictions,target_names=['Supply','Circulate','Service'])
 
-''' #show names of feature and coff
+ #show names of feature and coff
 basicwords = basicvectorizer.get_feature_names()
 basiccoffs = lr.coef_.tolist()[0]
 coeffdf = pd.DataFrame({'Word':basicwords,'Coefficient':basiccoffs})
 coeff = coeffdf.sort_values(['Coefficient','Word'],ascending=[0,1])
 print coeff.head(10)
-'''
+
 
 
 
