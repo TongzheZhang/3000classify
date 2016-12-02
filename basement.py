@@ -51,7 +51,7 @@ print len(traindatalist)
 
 
 
-basicvectorizer = CountVectorizer(ngram_range=(2,2))#2-gram  ngram_range=(2,2)
+basicvectorizer = CountVectorizer(ngram_range=(1,2))#2-gram  ngram_range=(2,2)
 basictrain = basicvectorizer.fit_transform(traindes)
 transformer = TfidfTransformer()
 tfidf = transformer.fit_transform(basictrain)
@@ -100,34 +100,7 @@ coeff = coeffdf.sort_values(['Coefficient','Word'],ascending=[0,1])
 #print coeff.head(10)
 
 
-#clf_linear  = svm.SVC(kernel='linear').fit(basictrain,trainlabel)  
-#clf_poly    = svm.SVC(kernel='poly', degree=3).fit(basictrain,trainlabel)  
 
-#clf_rbf = svm.SVC().fit(basictrain,trainlabel)  
-
-#clf_sigmoid = svm.SVC(kernel='sigmoid').fit(basictrain,trainlabel)
-#经测试rbf是最高的
-'''
-for i, clf in enumerate((clf_linear, clf_poly, clf_rbf, clf_sigmoid)):  
-    
-    answer = clf.predict(basictest)
-    num = 0
-    print len(answer)
-    for i in range(0,len(testlabel)):
-        if testlabel[i] == answer[i]:
-            num += 1
-
-    print i,'正确率:',num/len(testlabel)
-'''
-'''
-answer = clf_rbf.predict(basictest)
-num = 0
-print len(answer)
-for i in range(0,len(testlabel)):
-    if testlabel[i] == answer[i]:
-        num += 1
-print 'rbf正确率:',num/len(testlabel)
-'''
 
 
 
