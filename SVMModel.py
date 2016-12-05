@@ -11,8 +11,9 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.metrics import classification_report
 from sklearn import svm
 import splitdata
-
+from sklearn.metrics import confusion_matrix
 #splitdata
+
 
 def hoo():
 #set parameters
@@ -129,8 +130,45 @@ def hoo():
         final = a2
     print 'the bigger one:',final
     print classification_report(testlabel,answer,target_names=['Supply','Circulate','Service'])
-    return final
+    n11 = 0
+    n12 = 0
+    n13 = 0
+    n21 = 0
+    n22 = 0
+    n23 = 0
+    n31 = 0
+    n32 = 0
+    n33 = 0
+    confusion_matrix(testlabel,answer)
+    for i in range(0,len(testlabel)):
+        if testlabel[i] == str(1):
+            if answer[i] == str(1):
+                n11 += 1
+            elif answer[i] == str(2):
+                n12 += 1
+            else:n13 +=1
 
+        if testlabel[i] == str(2):
+            if answer[i] == str(1):
+                n21 += 1
+            elif answer[i] == str(2):
+                n22 += 1
+            else:n23 +=1
+            
+        if testlabel[i] == str(3):
+            if answer[i] == str(1):
+                n31 += 1
+            elif answer[i] == str(2):
+                n32 += 1
+            else:n33 +=1
+    print 'pred/ture','Supply','Circulate','Service'
+    print 'Supply','   ',n11,' ',n21,'       ',n31
+    print 'Circulate','',n12,'  ',n22,'     ',n32
+    print 'Service','  ',n13,'   ',n23,'      ',n33
+            
+    return final
+    
+    
 #print 'score预测加计算表现：',clf_another_linear.score(testfeature,testlabel)
     
 
