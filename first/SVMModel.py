@@ -22,8 +22,10 @@ def hoo():
     usingTfidf = True
 
     stopwords = {}.fromkeys([ line.rstrip() for line in open('english_stopword.txt') ])
-
-    traindata = open(r'E:\study\master of TJU\3000classification\3000classify-github\trainingdata.txt')
+    features_map = {}.fromkeys([ line.rstrip() for line in open('features_list.txt') ])
+    features_list = features_map.keys()
+    vocabulary = features_list
+    traindata = open(r'E:\study\master of TJU\3000classification\3000classify-github\first\trainingdata.txt')
     traindatalist = traindata.readlines()
     trainlabel = []
     traindes = []
@@ -44,7 +46,7 @@ def hoo():
 #print datalist[-1]
 
 #set parameter of garm
-    basicvectorizer = CountVectorizer(ngram_range=(1,1))
+    basicvectorizer = CountVectorizer(stop_words = 'english', ngram_range=(1,2))
     basictrain = basicvectorizer.fit_transform(traindes)
     transformer = TfidfTransformer()
     traintfidf = transformer.fit_transform(basictrain)
@@ -65,7 +67,7 @@ def hoo():
 #clf_sigmoid = svm.SVC(kernel='sigmoid').fit(trainfeature,trainlabel)
 
     '''test part'''
-    testdata = open(r'E:\study\master of TJU\3000classification\3000classify-github\testingdata.txt')
+    testdata = open(r'E:\study\master of TJU\3000classification\3000classify-github\first\testingdata.txt')
     testdatalist = testdata.readlines()
     testlabel = []
     testdes = []
